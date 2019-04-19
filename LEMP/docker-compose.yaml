@@ -1,0 +1,52 @@
+version: '3'
+services:
+    web:
+        image: nginx:latest
+        container_name: nginx
+        restart: always 
+        ports:
+            - "8080:80"
+        volumes:
+            - ./App:/var/www/html
+            - ./Docker/nginx:/etc/nginx/conf.d
+        environment:
+            - VIRTUAL_HOST=www.pagina1.com
+            - VIRTUAL_HOST=www.pagina2.com
+            - VIRTUAL_HOST=www.pagina3.com
+        depends_on:
+            - mysql
+            - php
+
+    php:
+        build: 
+            context: ./Docker/php
+        container_name: php7
+        restart: always
+        volumes:
+            - ./App:/var/www/html 
+
+
+    mysql:
+        image: mysql:5.7
+        container_name: mysql
+        restart: always
+        volumes:
+            - ./Docker/mysql/databases:/var/lib/mysql
+            - ./Docker/mysql/dump:/docker-entrypoint-initdb.d
+        environment:
+                - MYSQL_ROOT_PASSWORD=root
+                - MYSQL_USER=admin
+                - MYSQL_PASSWORD=1234
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        ports:
+            - 8008:80
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=mysql
+        depends_on:
+            - mysql
+        restart: always
+    

@@ -30,13 +30,13 @@ services:
         image: mysql:5.7
         container_name: mysql
         restart: always
-        volumes:
-            - ./Docker/mysql/databases:/var/lib/mysql
+        volumes:            
             - ./Docker/mysql/dump:/docker-entrypoint-initdb.d
-        environment:
-                - MYSQL_ROOT_PASSWORD=root
-                - MYSQL_USER=admin
-                - MYSQL_PASSWORD=1234
+        environment:       
+            MYSQL_ROOT_PASSWORD: admin
+            MYSQL_DATABASE: anna
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: 1234
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin

@@ -9,9 +9,9 @@
 	// Configure database connection
 
 	$db_host 		=	"mysql";	// specify host name | default is "localhost"
-	$db_name 		=	"ana";			// specify database name
-	$db_username 	=	"root";			// specify database username | default is "root"
-	$db_password 	=	"root";				// specify database password | leave as blank if database has no password set 
+	$db_name 		=	"anna";			// specify database name
+	$db_username 	=	"admin";			// specify database username | default is "root"
+	$db_password 	=	"1234";				// specify database password | leave as blank if database has no password set 
 
 	//Connect to the database server
 

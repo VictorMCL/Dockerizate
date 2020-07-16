@@ -1,0 +1,16 @@
+# Contenedor de Sonar-Scanner.
+
+docker run -ti -v $(pwd):/usr/src --entrypoint=/bin/bash newtmitch/sonar-scanner
+
+# Ejemplo de properties.
+
+sonar-scanner \
+  -Dsonar.host.url=http://34.67.148.199 \
+  -Dsonar.login=admin \
+  -Dsonar.password=admin \
+  -Dsonar.projectKey=python_test \
+  -Dsonar.projectName="Calculadora (Py)" \
+  -Dsonar.projectVersion=1 \
+  -Dsonar.sourceEncoding=UTF-8 \
+  -Dsonar.sources=./src \
+  -Dsonar.python.coverage.reportPaths=./coverage.xml
